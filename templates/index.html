@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture RFID</title>
+</head>
+<body>
+    <h2>Entrer le code RFID :</h2>
+    <form method="POST">
+        <input type="text" name="code" required>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    {% if user %}
+        <h3>Informations du citoyen :</h3>
+        <ul>
+            <li><strong>Nom :</strong> {{ user[0] }}</li>
+            <li><strong>Prénom :</strong> {{ user[1] }}</li>
+            <li><strong>Date de naissance :</strong> {{ user[2] }}</li>
+            <li><strong>Adresse :</strong> {{ user[3] }}</li>
+            <li><strong>Email :</strong> {{ user[4] }}</li>
+        </ul>
+        <img src="{{ url_for('static', filename='photos/' + user[5]) }}" width="300">
+    {% elif user == [] %}
+        <p style="color:red;">Aucun utilisateur trouvé.</p>
+    {% endif %}
+</body>
+</html>
