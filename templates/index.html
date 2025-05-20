@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Lecture RFID</title>
+    <meta charset="UTF-8" />
+    <title>Lecteur RFID</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        img { max-width: 300px; margin-top: 15px; border-radius: 8px; }
+        .erreur { color: red; margin-top: 15px; }
+    </style>
 </head>
 <body>
     <h2>Entrer le code RFID :</h2>
     <form method="POST">
-        <input type="text" name="code" required>
+        <input type="text" name="code" required autofocus />
         <button type="submit">Rechercher</button>
     </form>
+
+    {% if erreur %}
+        <p class="erreur">{{ erreur }}</p>
+    {% endif %}
 
     {% if user %}
         <h3>Informations du citoyen :</h3>
@@ -20,9 +29,7 @@
             <li><strong>Adresse :</strong> {{ user[3] }}</li>
             <li><strong>Email :</strong> {{ user[4] }}</li>
         </ul>
-        <img src="{{ url_for('static', filename='photos/' + user[5]) }}" width="300">
-    {% elif user == [] %}
-        <p style="color:red;">Aucun utilisateur trouvé.</p>
+        <img src="{{ url_for('static', filename='images/' + user[5]) }}" alt="Photo de {{ user[1] }}" />
     {% endif %}
 </body>
 </html>
