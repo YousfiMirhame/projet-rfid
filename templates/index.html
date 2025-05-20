@@ -20,7 +20,7 @@
             <li><strong>Adresse :</strong> {{ user[3] }}</li>
             <li><strong>Email :</strong> {{ user[4] }}</li>
         </ul>
-        <img src="{{ url_for('static', filename='photos/' + user[5]) }}" width="300">
+        <img src="{{ url_for('static', filename='images/' + user[5]) }}" width="300">
     {% elif user == [] %}
         <p style="color:red;">Aucun utilisateur trouvé.</p>
     {% endif %}
